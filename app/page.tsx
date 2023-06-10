@@ -27,6 +27,72 @@ export const posts = [
 					},
 				],
 			},
+			{
+				id: 1,
+				date: "2 dias atrás",
+				author: "Lucas.Ribera",
+				comment: "This is the first comment on this page.",
+				replies: [
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+				],
+			},
+			{
+				id: 1,
+				date: "2 dias atrás",
+				author: "Lucas.Ribera",
+				comment: "This is the first comment on this page.",
+				replies: [
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+				],
+			},
+			{
+				id: 1,
+				date: "2 dias atrás",
+				author: "Lucas.Ribera",
+				comment: "This is the first comment on this page.",
+				replies: [
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+					{
+						id: 1,
+						date: "1 dias atrás",
+						author: "Mary8900",
+						comment: "This is the first reply on this page.",
+					},
+				],
+			},
 		],
 	},
 

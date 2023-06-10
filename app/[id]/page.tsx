@@ -5,6 +5,8 @@ import { posts } from "@/app/page";
 import { Post } from "@/types/post";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import CommentsList from "@/components/comments/comments-list";
+import useComment from "@/hooks/useComment";
 
 type Props = {
 	params: { id: string };
@@ -25,6 +27,7 @@ export async function generateMetadata(
 }
 
 export default function Post({ params }: { params: { id: string } }) {
+	const { comment, isEditing, handleChange, handleClick } = useComment();
 	const post = posts.find((post) => post.id === +params.id);
 
 	if (post)
@@ -38,18 +41,31 @@ export default function Post({ params }: { params: { id: string } }) {
 						>
 							← Voltar para os tópicos
 						</Link>
-						<h1 className="max-w-[820px] mx-auto text-[40px] font-bold leading-tight">
-							{post.title}
-						</h1>
+
+						<div>
+							<div className="max-w-[840px] mx-auto">
+								<h1 className="text-[40px] font-bold leading-tight w-full text-left">
+									{post.title}
+								</h1>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				<div className="max-w-[820px] mx-auto mt-10">
-					<p className="text-sm sm:text-base">{post.description}</p>
+				<div className="container mt-10">
+					<div className="max-w-[840px] mx-auto">
+						<p className="text-sm sm:text-base">{post.description}</p>
 
-					<div className="p-4 border rounded flex justify-end items-end mt-16">
-						<Button>Responder</Button>
+						<div className="p-4 border rounded items-end mt-16">
+							{isEditing ? (
+								<Button>Comentar</Button>
+							) : (
+								<Button>Comentar</Button>
+							)}
+						</div>
 					</div>
+
+					<CommentsList comments={post.comments} />
 				</div>
 			</main>
 		);
