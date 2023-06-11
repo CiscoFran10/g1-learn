@@ -1,18 +1,15 @@
+import { CommentPost } from "@/types/post";
 import React from "react";
 
 const useComment = () => {
 	const [isEditing, setIsEditing] = React.useState(false);
-	const [comment, setComment] = React.useState("");
+	const [value, setValue] = React.useState("");
 
-	const handleClick = () => {
-		setIsEditing(true);
+	const handleCommentSubmit = (url: string, data: CommentPost) => {
+		console.log(data);
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setComment(event.target.value);
-	};
-
-	return { isEditing, comment, handleClick, handleChange };
+	return { isEditing, setIsEditing, value, setValue, handleCommentSubmit };
 };
 
 export default useComment;

@@ -4,9 +4,10 @@ import CommentsItem from "./comments-item";
 
 interface CommentsListProps {
 	comments: Comment[] | undefined;
+	id: number;
 }
 
-const CommentsList = ({ comments }: CommentsListProps) => {
+const CommentsList = ({ comments, id }: CommentsListProps) => {
 	if (comments)
 		return (
 			<ul className="grid gap-10 max-w-[840px] mx-auto my-10">
@@ -17,7 +18,12 @@ const CommentsList = ({ comments }: CommentsListProps) => {
 							<div key={comment.id} className="ml-10 border-l">
 								<ul className="grid gap-8">
 									{comment.replies?.map((reply) => (
-										<CommentsItem key={reply.id} {...reply} />
+										<CommentsItem
+											post_id={id}
+											key={reply.id}
+											comment_id={comment.id}
+											{...reply}
+										/>
 									))}
 								</ul>
 							</div>

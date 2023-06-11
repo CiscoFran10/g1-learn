@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { LegacyRef } from "react";
 import { Metadata, ResolvingMetadata } from "next";
 
 import { posts } from "@/app/page";
@@ -7,6 +9,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import CommentsList from "@/components/comments/comments-list";
 import useComment from "@/hooks/useComment";
+import Textarea from "@/components/ui/textarea";
+import CommentsForm from "@/components/comments/comments-form";
 
 type Props = {
 	params: { id: string };
@@ -27,8 +31,23 @@ export async function generateMetadata(
 }
 
 export default function Post({ params }: { params: { id: string } }) {
-	const { comment, isEditing, handleChange, handleClick } = useComment();
+	const { value, isEditing, setIsEditing, setValue, handleCommentSubmit } =
+		useComment();
+
 	const post = posts.find((post) => post.id === +params.id);
+
+	const handleSubmit = (e: React.SyntheticEvent) => {
+		e.preventDefault();
+
+		if (post) {
+			const date = new Date();
+			const author = post?.author;
+			const id = post?.id;
+			const comment = value;
+
+			handleCommentSubmit(`/posts/${id}`, { date, author, comment });
+		}
+	};
 
 	if (post)
 		return (
@@ -58,14 +77,20 @@ export default function Post({ params }: { params: { id: string } }) {
 
 						<div className="p-4 border rounded items-end mt-16">
 							{isEditing ? (
-								<Button>Comentar</Button>
+								<CommentsForm
+									handleSubmit={handleSubmit}
+									setIsEditing={setIsEditing}
+									value={value}
+									setValue={setValue}
+									placeholder="Comentário..."
+								/>
 							) : (
-								<Button>Comentar</Button>
+								<Button onClick={() => setIsEditing(true)}>Comentar</Button>
 							)}
 						</div>
 					</div>
 
-					<CommentsList comments={post.comments} />
+					<CommentsList id={post.id} comments={post.comments} />
 				</div>
 			</main>
 		);

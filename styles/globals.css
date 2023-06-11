@@ -36,6 +36,26 @@
 	}
 }
 
+.bytemd-status {
+	@apply !hidden;
+}
+
+.bytemd-body {
+	@apply h-[30vh] min-h-[150px] overflow-auto;
+}
+
+.bytemd-preview {
+	@apply !hidden;
+}
+
+.bytemd-editor {
+	@apply !w-full;
+}
+
+.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:nth-of-type(6) {
+	display: none;
+}
+
 @layer base {
 	* {
 		@apply border-border;
