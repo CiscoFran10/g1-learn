@@ -1,25 +1,30 @@
 export interface Post {
 	id: number;
 	title: string;
-	author: string;
-	date: Date | string;
-	views_total: number;
-	comments_total: number;
-}
-
-export interface PostInfo extends Post {
+	content: string;
 	comments?: Comment[];
-	description: string;
+	created_at: Date;
+	updated_at: Date;
 }
 
 export interface Comment {
 	id: number;
-	date: Date | string;
-	author: string;
-	comment: string;
-	replies?: Reply[];
+	post_id: number;
+	content: string;
+	created_at: Date;
+	updated_at: Date;
+	replies: Reply[];
 }
 
-export type Reply = Omit<Comment, "replies">;
+export interface Reply {
+	id: number;
+	comment_id: number;
+	content: string;
+	created_at: Date;
+	updated_at: Date;
+}
 
-export type CommentPost = Omit<Comment, "replies" | "id">;
+export interface PostCreate {
+	title: string;
+	content: string;
+}

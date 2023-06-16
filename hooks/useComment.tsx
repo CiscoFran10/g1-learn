@@ -5,7 +5,7 @@ const useComment = () => {
 	const [isEditing, setIsEditing] = React.useState(false);
 	const [value, setValue] = React.useState("");
 
-	const handleCommentSubmit = (url: string, data: CommentPost) => {
+	const handleCommentSubmit = (url: string, options) => {
 		console.log(data);
 	};
 

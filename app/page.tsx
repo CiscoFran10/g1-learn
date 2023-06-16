@@ -9,7 +9,6 @@ export const posts = [
 		author: "Thiago101",
 		date: "5 horas atrás",
 		comments_total: 12,
-		views_total: 200,
 		description:
 			"Prisma is a next-generation ORM that can be used to access a database in Node.js and TypeScript applications. In this guide, you'll learn how to implement a sample fullstack blogging application using the following technologies: Next.js as the React framework Next.js API Routes for server-side API routes as the backend Prisma as the ORM for migrations and database access Vercel Postgres as the database NextAuth.js for authentication via GitHub (OAuth) TypeScript as the programming language Vercel for deployment You'll take advantage of the flexible rendering capabilities of Next.js and at the end, you will deploy the app to Vercel.",
 		comments: [
@@ -18,14 +17,6 @@ export const posts = [
 				date: "2 dias atrás",
 				author: "Lucas.Ribera",
 				comment: "This is the first comment on this page.",
-				replies: [
-					{
-						id: 1,
-						date: "1 dias atrás",
-						author: "Mary8900",
-						comment: "This is the first reply on this page.",
-					},
-				],
 			},
 		],
 	},
@@ -36,7 +27,6 @@ export const posts = [
 		author: "Thiago101",
 		date: "10 dias atrás",
 		comments_total: 12,
-		views_total: 200,
 		description:
 			"Vercel is a platform for deploying the fastest React sites. You can deploy your site with zero configuration to the best frontend infrastructure. Develop: Build React sites that connect to your favorite APIs, databases, and content management systems Preview: Integrate with any GitHub, GitLab, or Bitbucket repository for instant continuous deployment Ship: Deploy your site to every edge node worldwide for the fastest React sites. Static files, Serverless Edge Functions, and more Monitor: Measure Core Web Vitals from actual devices your visitors are using with Vercel Analytics for Next or Gatsby.",
 	},

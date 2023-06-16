@@ -17,35 +17,46 @@ type Props = {
 	searchParams: { [key: string]: string | string[] | undefined };
 };
 
+const getPost = async (id: string) => {
+	const res = await fetch(`http://127.0.0.1:8000/api/posts/${id}`);
+	return res.json();
+};
+
+const getPostComments = async (id: string) => {
+	const res = await fetch(`http://127.0.0.1:8000/api/posts/${id}/comments`);
+	return res.json();
+};
+
 export async function generateMetadata(
 	{ params, searchParams }: Props,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
 	const id = params.id;
 
-	const post = posts.find((post) => post.id === +id);
+	const post = await getPost(id);
 
 	return {
 		title: post?.title,
 	};
 }
 
-export default function Post({ params }: { params: { id: string } }) {
+export default async function Post({ params }: { params: { id: string } }) {
 	const { value, isEditing, setIsEditing, setValue, handleCommentSubmit } =
 		useComment();
 
-	const post = posts.find((post) => post.id === +params.id);
+	const post = await getPost(params.id);
 
 	const handleSubmit = (e: React.SyntheticEvent) => {
 		e.preventDefault();
 
 		if (post) {
-			const date = new Date();
-			const author = post?.author;
 			const id = post?.id;
-			const comment = value;
+			const content = value;
 
-			handleCommentSubmit(`/posts/${id}`, { date, author, comment });
+			fetch(`http://127.0.0.1:8000/api/posts/${id}/comments`, {
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(content),
+			});
 		}
 	};
 
