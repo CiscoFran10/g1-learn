@@ -1,6 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import React from "react";
-import { Button } from "../ui/button";
-import Textarea from "../ui/textarea";
 
 interface CommentsFormProps {
 	value: string;
@@ -17,12 +17,19 @@ const CommentsForm = ({
 	handleSubmit,
 	placeholder,
 }: CommentsFormProps) => {
+	const handleClick = (e: React.SyntheticEvent) => {
+		handleSubmit(e);
+		setIsEditing(false);
+		setValue("");
+	};
+
 	return (
 		<form className="grid gap-4 w-full">
 			<Textarea
 				placeholder={placeholder}
 				value={value}
-				setValue={setValue}
+				autoFocus
+				onChange={({ target }) => setValue(target.value)}
 			></Textarea>
 			<div className="flex justify-end gap-3">
 				<Button
@@ -33,7 +40,7 @@ const CommentsForm = ({
 					Cancelar
 				</Button>
 				<Button
-					onClick={handleSubmit}
+					onClick={handleClick}
 					type="submit"
 					variant={"primary"}
 					size={"sm"}

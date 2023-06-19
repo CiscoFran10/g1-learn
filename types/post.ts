@@ -13,7 +13,8 @@ export interface Comment {
 	content: string;
 	created_at: Date;
 	updated_at: Date;
-	replies: Reply[];
+	comment_id?: number;
+	replies?: Reply[];
 }
 
 export interface Reply {
